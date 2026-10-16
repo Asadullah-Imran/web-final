@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Password Strength Tester</title>
 </head>
 <body>
-    <label for="password">Password</label>
-    <br>
-    <input type="password" id="password">
+    <h2>Password Strength Tester</h2>
+    <label for="password">Password:</label>
+    <br><br>
+    <input type="password" id="password" placeholder="Enter password">
     <button id="check" onclick="checkStrength()">Check Strength</button>
 
-    <div id="result"></div>
-    
+    <br><br>
+    <label id="result"></label>
+    <div id="tips" style="margin-top: 10px; color: #555;"></div>
+
+    <script src="script.js"></script>
 </body>
-<script src="script.js"></script>
 </html>

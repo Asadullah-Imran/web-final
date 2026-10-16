@@ -8,8 +8,9 @@ function addStudy() {
     let subject = document.getElementById("subject").value;
     let hours = parseFloat(document.getElementById("hours").value);
 
-    if (subject.trim() === "" || isNaN(hours) || hours < 0 || document.getElementById("hours").value === "") {
-        alert("Enter a valid subject name and study hours.")
+    if (subject.trim() === "" || isNaN(hours) || hours <= 0 || document.getElementById("hours").value === "") {
+        alert("Enter a valid subject name and study hours.");
+        return;
     }
 
     totalHours += hours;

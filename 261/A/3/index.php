@@ -40,7 +40,19 @@ SET Rating = Rating+0.2 , EntryFee = EntryFee*1.1
 WHERE Rating >= 4.0 AND Rating <=4.5 AND EntryFee>0";
 
     $res = $conn->query($sql2);
-    echo "updated<br>";
+    echo "updated<br><br>";
 
+    //que4
+    $sql4 = "SELECT Region, SUM(EntryFee * VisitorsPerYear) AS TotalRevenue
+FROM tourist_spot
+GROUP BY Region
+HAVING TotalRevenue > 1000000
+ORDER BY TotalRevenue DESC";
+
+    $res = $conn->query($sql4);
+    echo "Query 4 (Regions with Revenue > 1,000,000):<br>";
+    while($row = $res->fetch_assoc()){
+        echo "Region: " . $row["Region"] . " | Estimated Yearly Revenue: " . number_format($row["TotalRevenue"], 2) . "<br>";
+    }
 
 ?>

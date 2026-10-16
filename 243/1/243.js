@@ -1,33 +1,41 @@
-let secretNumer = Math.floor(Math.random()*(5000-500+1)) + 500;
+let secretNumer = Math.floor(Math.random() * (5000 - 500 + 1)) + 500;
 let count = 0;
+const maxAttempts = 5;
 
-function numberGuess(){
+function numberGuess() {
+    let guessInput = document.getElementById("guess");
+    let guess = Number(guessInput.value);
+
+    if (guessInput.value.trim() === "" || isNaN(guess)) {
+        document.getElementById("ans").innerText = "Please enter a valid number!";
+        return;
+    }
+
     count++;
-    let guess = Number(document.getElementById("guess").value);
 
-    if(guess==secretNumer){
+    if (guess === secretNumer) {
         document.getElementById("ans").innerText = "Correct!";
-        document.getElementById("guess").disabled = true;
-    }
-    else if(guess > secretNumer){
-        document.getElementById("ans").innerText = "Too High!";
-    }
-    else if(guess < secretNumer){
-        document.getElementById("ans").innerText = "Too Low!";
+        guessInput.disabled = true;
+        if (document.getElementById("btn")) document.getElementById("btn").disabled = true;
+        return;
+    } else if (guess > secretNumer) {
+        document.getElementById("ans").innerText = "Too high!";
+    } else {
+        document.getElementById("ans").innerText = "Too low!";
     }
 
-    if(count > 5){
+    if (count >= maxAttempts) {
         document.getElementById("ans").innerText = "Out of guesses!";
-        document.getElementById("btn").disabled = true;
-        document.getElementById("guess").disabled = true;
+        guessInput.disabled = true;
+        if (document.getElementById("btn")) document.getElementById("btn").disabled = true;
     }
 }
 
-
-function reset(){
+function reset() {
+    secretNumer = Math.floor(Math.random() * (5000 - 500 + 1)) + 500;
     count = 0;
-    document.getElementById("btn").disabled = false;
+    if (document.getElementById("btn")) document.getElementById("btn").disabled = false;
     document.getElementById("guess").disabled = false;
-    document.getElementById("ans").innerText = "";
     document.getElementById("guess").value = "";
+    document.getElementById("ans").innerText = "";
 }

@@ -3,21 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Electricity Bill Calculator</title>
 </head>
 <body>
-    Location: 
+    <h2>Electricity Bill Calculator</h2>
+    <label for="location">Location:</label>
     <select id="location">
-        <option value="dhk">Dhaka</option>
-        <option value="ctg">Ctg</option>
-    </select>   <br>
-    Area: <input type="radio" id="u" name="gender"> Urban 
-        <input type="radio" id="r" name="gender"> Rural <br>
-    Bill: <input type="text" id="bill">  <br>
+        <option value="">--Select Location--</option>
+        <option value="Dhaka">Dhaka</option>
+        <option value="Chattogram">Chattogram</option>
+        <option value="Other">Other</option>
+    </select>
+    <br><br>
 
-    <button id="btn" onclick="calc()">Calculate</button>
+    <label>Area:</label>
+    <input type="radio" id="urban" name="area" value="Urban"> Urban
+    <input type="radio" id="rural" name="area" value="Rural"> Rural
+    <br><br>
+
+    <label for="unit">Unit Consumed:</label>
+    <input type="number" id="unit" placeholder="Enter units consumed" min="1">
+    <br><br>
+
+    <button id="btn" onclick="calc()">Calculate Bill</button>
+    <br><br>
     <label id="ans"></label>
-
 
     <script src="summer24.js"></script>
 </body>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring 2024 - Question 1</title>
+</head>
+<body>
+    <div style="width: 320px; margin: 40px auto; font-family: sans-serif;">
+        <label>Height (cm):</label>
+        <input type="number" id="height_cm" step="any" style="width: 100%; margin-bottom: 15px; padding: 6px;">
+
+        <label>Weight (lb):</label>
+        <input type="number" id="weight_lb" step="any" style="width: 100%; margin-bottom: 15px; padding: 6px;">
+
+        <button onclick="calculate()" style="width: 100%; padding: 8px; background-color: #0d6efd; color: white; border: none; cursor: pointer; border-radius: 4px;">Calculate</button>
+
+        <div style="margin-top: 20px;">
+            <p>Calculation Result: <strong id="result"></strong></p>
+            <p>Status: <strong id="status"></strong></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
