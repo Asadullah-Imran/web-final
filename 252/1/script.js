@@ -1,64 +1,34 @@
+// if I want to persist any info, declare globally
+let calories = [];
+let daily_goal = 2000;
 
-let calory_goal = 2000;
-let totalCalory = 0;
-let entries = 0;
+document.getElementById("add_cal").addEventListener("click", function () {
+    let calory = Number(document.getElementById("calory").value);
 
-function addcalories() {
+    calories.push(calory);
 
-    let calory = parseInt(
-        document.getElementById("calory-id").value
-    );
-
-    // Validate input
-    if (isNaN(calory) || calory <= 0) {
-        alert("Please enter valid calories!");
-        return;
+    let total_calories = 0;
+    for (let i = 0; i < calories.length; i++) {
+        total_calories += calories[i];
     }
 
-    // a) Add calories to running total
-    totalCalory += calory;
+    let entry_count = calories.length;
 
-    // d) Count number of entries
-    entries++;
+    let progress = (total_calories / daily_goal) * 100;
 
-    // b) Display total calories
-    document.getElementById("result").innerHTML =
-        "Total Calories: " + totalCalory;
+    let feedback = "";
 
-    // Display daily goal progress
-    let progress = (totalCalory / calory_goal) * 100;
-
-    document.getElementById("progress").innerHTML =
-        "Daily Goal Progress: " + progress.toFixed(1) + "%";
-
-    // c) Feedback based on total calories
-    if (totalCalory <= 800) {
-        document.getElementById("feedback").innerHTML =
-            "You're off to a healthy start!";
-    }
-    else if (totalCalory <= 1600) {
-        document.getElementById("feedback").innerHTML =
-            "Good progress, keep it balanced!";
-    }
-    else if (totalCalory < 2000) {
-        document.getElementById("feedback").innerHTML =
-            "Almost at your limit!";
-    }
-    else {
-        document.getElementById("feedback").innerHTML =
-            "Goal reached! Stay mindful!";
+    if (entry_count > 10 && total_calories < daily_goal) {
+        feedback = "Be cautious of frequent snacking!";
+    } else if (total_calories >= 2000) {
+        feedback = "Goal reached! Stay mindful!";
+    } else if (total_calories >= 1601 && total_calories <= 1999) {
+        feedback = "Almost at your limit!";
+    } else if (total_calories >= 801 && total_calories <= 1600) {
+        feedback = "Good progress, keep it balanced!";
+    } else {
+        feedback = "You're off to a healthy start!";
     }
 
-    // d) Display number of entries
-    document.getElementById("entries").innerHTML =
-        "Number of Entries: " + entries;
-
-    // e) Warning for frequent entries before reaching goal
-    if (entries > 10 && totalCalory < calory_goal) {
-        document.getElementById("feedback").innerHTML =
-            "Be cautious of frequent snacking!";
-    }
-
-    // Clear input after adding
-    document.getElementById("calory-id").value = "";
-}
+    document.getElementById("label").innerHTML = `total calories: ${total_calories} || daily goal progress: ${progress}% || entries: ${entry_count} || feedback: ${feedback}`;
+});
